@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cabinet Grotesk - Display/Headings */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sora - Body */
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora-Variable.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Core palette: Deep Teal + Slate industrial */
+    --background: 0.97 0.005 220;
+    --foreground: 0.18 0.025 240;
+
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.025 240;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.025 240;
+
+    /* Primary: Deep Teal */
+    --primary: 0.28 0.07 220;
+    --primary-foreground: 0.98 0 0;
+
+    /* Secondary: Cool slate */
+    --secondary: 0.93 0.01 220;
+    --secondary-foreground: 0.28 0.07 220;
+
+    --muted: 0.93 0.008 220;
+    --muted-foreground: 0.52 0.02 220;
+
+    /* Accent: Amber for key values */
+    --accent: 0.88 0.12 65;
+    --accent-foreground: 0.2 0.05 50;
+
+    /* Success: Green */
+    --success: 0.55 0.15 150;
+    --success-foreground: 0.98 0 0;
+
+    /* Warning: Amber */
+    --warning: 0.72 0.16 75;
+    --warning-foreground: 0.15 0.04 50;
+
+    --destructive: 0.55 0.22 27;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.015 220;
+    --input: 0.88 0.015 220;
+    --ring: 0.4 0.08 220;
+
+    --chart-1: 0.55 0.15 150;
+    --chart-2: 0.6 0.14 220;
+    --chart-3: 0.72 0.16 75;
+    --chart-4: 0.55 0.22 27;
+    --chart-5: 0.5 0.12 300;
+
+    --sidebar: 0.22 0.045 225;
+    --sidebar-foreground: 0.95 0.01 220;
+    --sidebar-primary: 0.65 0.1 200;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.32 0.06 225;
+    --sidebar-accent-foreground: 0.95 0.01 220;
+    --sidebar-border: 0.32 0.05 225;
+    --sidebar-ring: 0.55 0.1 220;
+
+    /* App shell: mobile container */
+    --app-max-width: 430px;
+    --header-height: 60px;
+    --nav-height: 64px;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    /* Industrial grid background on desktop */
+    background-image: 
+      linear-gradient(oklch(0.88 0.015 220) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.88 0.015 220) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* App container - mobile centered */
+  #root {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Input sizing for mobile */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .text-success {
+    color: oklch(var(--success));
+  }
+  .bg-success {
+    background-color: oklch(var(--success));
+  }
+  .text-success-foreground {
+    color: oklch(var(--success-foreground));
+  }
+  .text-warning {
+    color: oklch(var(--warning));
+  }
+  .bg-warning {
+    background-color: oklch(var(--warning));
+  }
+  .border-success {
+    border-color: oklch(var(--success));
+  }
+  .border-warning {
+    border-color: oklch(var(--warning));
+  }
+  .app-shell {
+    width: 100%;
+    max-width: var(--app-max-width);
+    min-height: 100vh;
+    background-color: oklch(var(--background));
+    position: relative;
+    box-shadow: 0 0 40px oklch(0.6 0.04 220 / 0.15), 0 0 80px oklch(0.6 0.04 220 / 0.08);
+  }
+  .tab-content-area {
+    padding-top: var(--header-height);
+    padding-bottom: var(--nav-height);
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .input-factory {
+    min-height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .btn-factory {
+    min-height: 52px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .data-value {
+    font-family: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .data-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: oklch(var(--muted-foreground));
+  }
+}
